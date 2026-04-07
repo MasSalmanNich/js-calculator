@@ -9,86 +9,91 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #1a1a2e;
+    background: #0d0d0d;
     font-family: 'Segoe UI', sans-serif;
 }
 
 .calculator {
-    background: #16213e;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    background: #1e1e2e;
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 0 40px rgba(138, 43, 226, 0.4);
     width: 320px;
 }
 
 h2 {
     text-align: center;
-    color: #e2e2e2;
+    color: #cdd6f4;
     margin-bottom: 16px;
-    font-size: 18px;
-    letter-spacing: 2px;
+    font-size: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 #display {
     width: 100%;
-    background: #0f3460;
-    color: #e2e2e2;
-    font-size: 28px;
+    background: #11111b;
+    color: #cdd6f4;
+    font-size: 30px;
     text-align: right;
-    padding: 14px 16px;
-    border: none;
-    border-radius: 12px;
-    margin-bottom: 16px;
+    padding: 16px;
+    border: 2px solid #8a2be2;
+    border-radius: 14px;
+    margin-bottom: 20px;
     outline: none;
 }
 
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 12px;
 }
 
 button {
     padding: 18px;
     font-size: 18px;
     border: none;
-    border-radius: 12px;
-    background: #1a1a2e;
-    color: #e2e2e2;
+    border-radius: 14px;
+    background: #2a2a3e;
+    color: #cdd6f4;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 button:hover {
-    background: #e94560;
+    background: #8a2be2;
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(138, 43, 226, 0.4);
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: scale(0.93);
 }
 
 .btn-operator {
-    background: #0f3460;
-    color: #e94560;
+    background: #2d1b69;
+    color: #bd93f9;
     font-weight: bold;
 }
 
 .btn-clear {
-    background: #e94560;
+    background: #8a2be2;
     color: white;
     font-weight: bold;
 }
 
 .btn-delete {
-    background: #533483;
+    background: #44475a;
     color: white;
 }
 
 .btn-equal {
-    background: #e94560;
+    background: #8a2be2;
     color: white;
     font-weight: bold;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.5);
 }
 
 .btn-zero {

@@ -1,21 +1,42 @@
-// Ambil elemen display
 const display = document.getElementById('display');
+const history = document.getElementById('history');
+
+let lastResult = false;
 
 // Tambahkan nilai ke display
 function appendValue(value) {
-    if (display.value === '0' && value !== '.') {
-        display.value = value;
+    const operators = ['+', '-', '*', '/', '%'];
+    const lastChar = display.value.slice(-1);
+
+    // Jika hasil terakhir dan input angka baru, reset display
+    if (lastResult && !operators.includes(value)) {
+        display.value = '';
+        lastResult = false;
     } else {
-        display.value += value;
+        lastResult = false;
     }
+
+    // Cegah 2 operator berurutan
+    if (operators.includes(value) && operators.includes(lastChar)) {
+        display.value = display.value.slice(0, -1);
+    }
+
+    // Cegah lebih dari 1 titik di angka yang sama
+    if (value === '.') {
+        const parts = display.value.split(/[\+\-\*\/]/);
+        if (parts[parts.length - 1].includes('.')) return;
+    }
+
+    display.value += value;
 }
 
-// Hapus semua (clear)
+// Hapus semua
 function clearDisplay() {
     display.value = '';
+    if (history) history.textContent = '';
 }
 
-// Hapus satu karakter terakhir
+// Hapus satu karakter
 function deleteLast() {
     display.value = display.value.slice(0, -1);
 }
@@ -23,18 +44,23 @@ function deleteLast() {
 // Hitung hasil
 function calculate() {
     try {
-        // Ganti simbol tampilan ke operator JS
         let expression = display.value
-            .replace(/÷/g, '/')
             .replace(/×/g, '*')
+            .replace(/÷/g, '/')
             .replace(/−/g, '-');
-        
-        let result = eval(expression);
 
-        // Hindari hasil desimal terlalu panjang
+        if (!expression) return;
+
+        // Simpan ke riwayat
+        if (history) history.textContent = expression + ' =';
+
+        let result = eval(expression);
         display.value = parseFloat(result.toFixed(10));
+        lastResult = true;
+
     } catch (error) {
         display.value = 'Error';
+        lastResult = false;
     }
 }
 
